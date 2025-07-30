@@ -5,9 +5,10 @@
     Register
   </h1>
 
-  <form>
-    <div class="grid grid-cols-2 space-x-3 justify-center items-center mt-3">
-      <!-- //name -->
+  <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+    <div
+      class="grid grid-cols-2 space-x-3 space-y-1.5 justify-center items-center mt-3"
+    >
       <div class="flex flex-col justify-center items-start space-y-1.5">
         <label
           class="text-gray-400 uppercase text-sm tracking-widest font-semibold"
@@ -17,25 +18,46 @@
           type="text"
           class="border outline-none border-violet-700 p-2 rounded-lg text-gray-400"
           placeholder="Enter your name"
+          formControlName="firstName"
         />
-        <p class="text-red-500 text-sm font-semibold">error</p>
+        <p
+          *ngIf="fields['firstName'].touched && fields['firstName'].invalid"
+          class="text-red-500 text-sm font-semibold"
+        >
+          <span *ngIf="fields['firstName'].errors?.['required']"
+            >first name is required</span
+          >
+          <span *ngIf="fields['firstName'].errors?.['minlength']"
+            >minimum 2 letter required</span
+          >
+        </p>
       </div>
-      <!-- lastName -->
       <div class="flex flex-col justify-center items-start space-y-1.5">
         <label
           class="text-gray-400 uppercase text-sm tracking-widest font-semibold"
           >last name</label
         >
-
         <input
           type="text"
           class="border outline-none border-violet-700 p-2 rounded-lg text-gray-400"
           placeholder="Enter your last name"
+          formControlName="lastName"
         />
-        <p class="text-red-500 text-sm font-semibold">error</p>
+        <p
+          *ngIf="fields['lastName'].touched && fields['lastName'].invalid"
+          class="text-red-500 text-sm font-semibold"
+        >
+          <span *ngIf="fields['lastName'].errors?.['required']"
+            >last name is required</span
+          >
+          <span *ngIf="fields['lastName'].errors?.['minlength']"
+            >minimum 1 letter required</span
+          >
+          <span *ngIf="fields['lastName'].errors?.['maxlength']"
+            >maximum 3 letter required</span
+          >
+        </p>
       </div>
-
-      <!-- workEmail -->
       <div class="flex flex-col justify-center items-start space-y-1.5">
         <label
           class="text-gray-400 uppercase text-sm tracking-widest font-semibold"
@@ -46,11 +68,22 @@
           type="text"
           class="border outline-none border-violet-700 p-2 rounded-lg text-gray-400"
           placeholder="Enter your last name"
+          formControlName="workingEmail"
         />
-        <p class="text-red-500 text-sm font-semibold">error</p>
+        <p
+          *ngIf="
+            fields['workingEmail'].touched && fields['workingEmail'].invalid
+          "
+          class="text-red-500 text-sm font-semibold"
+        >
+          <span *ngIf="fields['workingEmail'].errors?.['required']"
+            >email is required</span
+          >
+          <span *ngIf="fields['workingEmail'].errors?.['email']"
+            >enter a valid email</span
+          >
+        </p>
       </div>
-
-      <!-- mobilenumber -->
       <div class="flex flex-col justify-center items-start space-y-1.5">
         <label
           class="text-gray-400 uppercase text-sm tracking-widest font-semibold"
@@ -61,9 +94,35 @@
           type="text"
           class="border outline-none border-violet-700 p-2 rounded-lg text-gray-400"
           placeholder="Enter your last name"
+          formControlName="number"
         />
-        <p class="text-red-500 text-sm font-semibold">error</p>
+        <p
+          *ngIf="fields['number'].touched && fields['number'].invalid"
+          class="text-red-500 text-sm font-semibold"
+        >
+          <span *ngIf="fields['number'].errors?.['required']"
+            >number is reuired</span
+          >
+          <span *ngIf="fields['number'].errors?.['pattern']"
+            >number should be 10 digit</span
+          >
+        </p>
       </div>
+    </div>
+
+    <div class="flex flex-col items-start space-y-1.5 my-2">
+      <input
+        type="text"
+        class="w-full p-2 outline-none border border-violet-700 text-gray-400 rounded-lg"
+        placeholder="Enter your age"
+        formControlName="age"
+      />
+      <p
+        *ngIf="fields['age'].touched && fields['age'].invalid"
+        class="text-red-500 text-sm font-semibold"
+      >
+        <span *ngIf="fields['age'].errors?.['required']">age is required</span>
+      </p>
     </div>
 
     <!-- gender -->
@@ -102,7 +161,9 @@
       </p>
     </div>
 
-    <div class="grid grid-cols-2 space-x-3 justify-center items-center mt-3">
+    <div
+      class="grid grid-cols-2 space-x-3 justify-center items-center mt-3 space-y-1.5"
+    >
       <!-- //name -->
       <div class="flex flex-col justify-center items-start space-y-1.5">
         <label
@@ -141,5 +202,5 @@
     </div>
   </form>
 
-  <p class="text-gray-400">Already have an accound ? Login </p>
+  <p class="text-gray-400">Already have an accound ? Login</p>
 </div>
