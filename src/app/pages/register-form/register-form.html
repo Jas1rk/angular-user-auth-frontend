@@ -122,10 +122,12 @@
         class="text-red-500 text-sm font-semibold"
       >
         <span *ngIf="fields['age'].errors?.['required']">age is required</span>
+        <span
+          *ngIf="fields['age'].errors?.['min'] || fields['age'].errors?.['max'] "
+          >age should be between 15 and 25</span
+        >
       </p>
     </div>
-
-    <!-- gender -->
 
     <div class="mt-2 flex flex-col space-y-1.5">
       <div class="flex justify-between items-start">
@@ -139,32 +141,36 @@
             class="text-gray-400 uppercase text-sm tracking-widest font-semibold"
             >male</label
           >
-          <input type="radio" />
+          <input type="radio" formControlName="gender" value="male" />
         </div>
         <div class="flex justify-center items-center space-x-2">
           <label
             class="text-gray-400 uppercase text-sm tracking-widest font-semibold"
             >female</label
           >
-          <input type="radio" />
+          <input type="radio" formControlName="gender" value="female" />
         </div>
         <div class="flex justify-center items-center space-x-2">
           <label
             class="text-gray-400 uppercase text-sm tracking-widest font-semibold"
             >prefer not to say</label
           >
-          <input type="radio" />
+          <input type="radio" formControlName="gender" value="prefernotsay" />
         </div>
       </div>
-      <p class="text-sm font-semibold text-red-500">
-        gender is required please select
+      <p
+        *ngIf="fields['gender'].touched && fields['gender'].invalid"
+        class="text-sm font-semibold text-red-500"
+      >
+        <span *ngIf="fields['gender'].errors?.['required']"
+          >please select your gender</span
+        >
       </p>
     </div>
 
     <div
       class="grid grid-cols-2 space-x-3 justify-center items-center mt-3 space-y-1.5"
     >
-      <!-- //name -->
       <div class="flex flex-col justify-center items-start space-y-1.5">
         <label
           class="text-gray-400 uppercase text-sm tracking-widest font-semibold"
@@ -174,10 +180,20 @@
           type="text"
           class="border outline-none border-violet-700 p-2 rounded-lg text-gray-400"
           placeholder="Enter your name"
+          formControlName="password"
         />
-        <p class="text-red-500 text-sm font-semibold">error</p>
+        <p
+          *ngIf="fields['password'].touched && fields['password'].invalid"
+          class="text-red-500 text-sm font-semibold"
+        >
+          <span *ngIf="fields['password'].errors?.['required']"
+            >password is requried</span
+          >
+          <span *ngIf="fields['password'].errors?.['minlength']"
+            >minimum 6 charecter required</span
+          >
+        </p>
       </div>
-      <!-- lastName -->
       <div class="flex flex-col justify-center items-start space-y-1.5">
         <label
           class="text-gray-400 uppercase text-sm tracking-widest font-semibold"
@@ -188,8 +204,19 @@
           type="text"
           class="border outline-none border-violet-700 p-2 rounded-lg text-gray-400"
           placeholder="Enter your last name"
+          formControlName="confirmPassword"
         />
-        <p class="text-red-500 text-sm font-semibold">error</p>
+        <p
+          *ngIf="
+            fields['confirmPassword'].touched &&
+            fields['confirmPassword'].invalid
+          "
+          class="text-red-500 text-sm font-semibold"
+        >
+          <span *ngIf="fields['confirmPassword'].errors?.['required']"
+            >confirm password is required</span
+          >
+        </p>
       </div>
     </div>
 
