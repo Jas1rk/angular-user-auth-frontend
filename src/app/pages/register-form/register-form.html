@@ -177,7 +177,7 @@
           >password</label
         >
         <input
-          type="text"
+          type="password"
           class="border outline-none border-violet-700 p-2 rounded-lg text-gray-400"
           placeholder="Enter your name"
           formControlName="password"
@@ -201,7 +201,7 @@
         >
 
         <input
-          type="text"
+          type="password"
           class="border outline-none border-violet-700 p-2 rounded-lg text-gray-400"
           placeholder="Enter your last name"
           formControlName="confirmPassword"
@@ -217,17 +217,16 @@
             >confirm password is required</span
           >
         </p>
+        <p *ngIf="showpassworderror()"class="text-sm font-bold text-red-500">password must be same</p>
       </div>
     </div>
 
     <div class="flex justify-center items-center my-4">
-      <button
-        class="uppercase text-white tracking-widest font-semibold bg-violet-700 px-4 py-1 rounded-lg cursor-pointer"
-      >
-        save
-      </button>
+      <app-button type="submit" label="Register" [disabled]="form.invalid"></app-button>
     </div>
   </form>
 
-  <p class="text-gray-400">Already have an accound ? Login</p>
+  <p class="text-gray-400 text-sm font-semibold">Already have an accound ? 
+    <a routerLink="/login" class="text-violet-500 hover:underline cursor-pointer">Login</a>
+  </p>
 </div>
