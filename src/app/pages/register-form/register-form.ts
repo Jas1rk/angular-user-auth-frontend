@@ -8,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import {Router, RouterLink } from '@angular/router';
 import { Button } from '../../shared/components/button/button';
+import { UserType } from '../../types/user';
 
 @Component({
   selector: 'app-register-form',

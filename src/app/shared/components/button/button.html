@@ -2,5 +2,6 @@
  [type]="type"
  [ngClass]="colorClass"
  [disabled]="disabled"
-  class="uppercase tracking-widest font-semibold  px-4 py-1 rounded-lg cursor-pointer"
+ (click)="clicked.emit()"
+  class="uppercase tracking-widest font-semibold  px-4 py-1 rounded-lg cursor-pointer transition duration-500 ease-in-out hover:scale-[1.03]"
 >{{label}}</button>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,4 +11,6 @@ export class Button {
   @Input() type: 'button'|'submit'|'reset' = 'button';
   @Input() disabled: boolean = false;
   @Input() colorClass : string  = 'bg-violet-700 text-white hover:bg-violet-800'
+
+  @Output() clicked = new EventEmitter<void>()
 }

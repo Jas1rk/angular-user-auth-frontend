@@ -222,7 +222,7 @@
     </div>
 
     <div class="flex justify-center items-center my-4">
-      <app-button type="submit" label="Register" [disabled]="form.invalid"></app-button>
+      <app-button type="submit" label="Register"  (clicked)="handleSubmit()" ></app-button>
     </div>
   </form>
 
